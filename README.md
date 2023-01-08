@@ -19,11 +19,11 @@
       <th> Description </th>
     </tr>
     <tr>
-      <th><a href='https://github.com/T4nae/random_scripts/blob/master/nth_prime_plaindrome_no.py'>nth_prime_plaindrome_number</a></th>
+      <th><a href='https://github.com/T4nae/random_scripts/blob/master/small_scripts/nth_prime_plaindrome_no.py'>nth_prime_plaindrome_number</a></th>
       <td> well use is self explanatory </td>
     </tr>
     <tr>
-      <th><a href='https://github.com/T4nae/random_scripts/blob/master/sentence_to_acronym.py'>sentence to acronym</a></th>
+      <th><a href='https://github.com/T4nae/random_scripts/blob/master/small_scripts/sentence_to_acronym.py'>sentence to acronym</a></th>
       <td> adds first letter of each word in sentence to make acronym </td>
      </tr>
    </table>
