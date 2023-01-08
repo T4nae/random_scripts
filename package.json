@@ -1,0 +1,14 @@
+{
+  "name": "random_scripts",
+  "version": "1.0.0",
+  "description": "random scripts that don't deserve a separate palace",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "T4nae",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
