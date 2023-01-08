@@ -26,6 +26,10 @@
       <th><a href='https://github.com/T4nae/random_scripts/blob/master/small_scripts/sentence_to_acronym.py'>sentence to acronym</a></th>
       <td> adds first letter of each word in sentence to make acronym </td>
      </tr>
+     <tr>
+      <th><a href='https://github.com/T4nae/random_scripts/tree/master/text_to_handwritting'>text to handwriting</a></th>
+      <td> converts text files or text inputs into pdf that feel written by hand and then scanned </td>
+     </tr>
    </table>
 <br>
 </details>
