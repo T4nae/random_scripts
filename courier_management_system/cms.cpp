@@ -1,18 +1,20 @@
 /*
- *  COURIER MANAGEMENT SYSTEM
- * - This is a simple courier management system which can be used by a courier company to manage their parcels.
- * - It has two portals, one for customers and one for admin.
- * - Customers can send a parcel and track it.
- * - Admin can view all the parcels, delete a parcel, update a parcel and search for a parcel.
- * - All the data is stored in a file named parcels.txt.
- * - The file is created if it does not exist.
- * - The file is initialized with default admin credentials.
- * - The admin can also change the status of a parcel.
- * - The admin can also sort the parcels by weight.
- * - The admin can also search for a parcel by id, name, weight, address, phone, email, date and time and status.
- */
+*  COURIER MANAGEMENT SYSTEM
+* - This is a simple courier management system which can be used by a courier company to manage their parcels.
+* - It has two portals, one for customers and one for admin.
+* - Customers can send a parcel and track it.
+* - Admin can view all the parcels, delete a parcel, update a parcel and search for a parcel.
+* - All the data is stored in a file named parcels.txt.
+* - The file is created if it does not exist.
+* - The file is initialized with default admin credentials.
+* - The admin can also change the status of a parcel.
+* - The admin can also sort the parcels by weight.
+* - The admin can also search for a parcel by id, name, weight, address, phone, email, date and time and status.   
+* - compiled using gdb++ 12.1.0 on Windows 11 64-bit OS.
+*/
 
 #include <stdio.h>
+#include <cstdlib>
 #include <string.h>
 #include <time.h>
 using namespace std;
@@ -61,17 +63,18 @@ void display(parcel out)
 int initialize()
 {
     FILE *t;
+    // check if file exists
     t = fopen("parcels.txt", "r");
-    if (t == NULL)
+    if (t == NULL) // if file does not exist then create it and initialize it
     {
-        t = fopen("parcels.txt", "w");
-        if (t == NULL)
+        t = fopen("parcels.txt", "w"); // create file
+        if (t == NULL)  // if file cannot be initialized exit with error
         {
             printf("Error Initializing\n");
             return 0;
         }
     }
-    fclose(t);
+    fclose(t);  // close file
     printf("Successfully initialized\n\n");
     return 1;
 }
@@ -83,7 +86,7 @@ main()
     // main menu loop
     while (ch)
     {
-        printf("\e[1;1H\e[2J"); // clears screen
+        printf("\n--------------------------------------------\n");
         printf("1. Customer Portal\n2. Admin Portal\n0. Exit\nEnter your choice: ");
         scanf("%d", &ch);
         switch (ch)
@@ -107,7 +110,7 @@ main()
 void customer_portal()
 {
     int ch = 1;             // choice variable
-    printf("\e[1;1H\e[2J"); // clears screen
+    printf("\n--------------------------------------------\n");
     while (ch)
     {
         printf("1. Send a parcel\n2. Track a parcel\n0. Exit\nEnter your choice: ");
@@ -116,13 +119,13 @@ void customer_portal()
         {
         case 1:
             // clear screen and send a parcel
-            printf("\e[1;1H\e[2J");
+
             printf("Fill Details of Parcel\n\n");
             send_parcel();
             break;
         case 2:
             // clear screen and track a parcel
-            printf("\e[1;1H\e[2J");
+
             track();
             break;
         case 0:
@@ -177,7 +180,7 @@ void send_parcel()
     fwrite(&inp, sizeof(parcel), 1, pa);
     fclose(pa);
     // clear screen and display tracking id
-    printf("\e[1;1H\e[2J");
+
     printf("Tracking ID of your parcel is: %d\n\n", inp.id);
 }
 
@@ -191,7 +194,7 @@ void track()
     printf("Enter parcel id: ");
     scanf("%d", &id);
     // clear screen
-    printf("\e[1;1H\e[2J");
+
     // find parcel with given id
     pa = fopen("parcels.txt", "r");            // open file in read mode
     while (fread(&out, sizeof(parcel), 1, pa)) // loops until parcels in file
@@ -217,7 +220,7 @@ void track()
 void admin_portal()
 {
     int ch = login();       // choice variable gets value of 1 if login is successful else 0
-    printf("\e[1;1H\e[2J"); // clears screen
+    printf("\n--------------------------------------------\n");
     while (ch)
     {
         printf("1. Delete/Update parcel\n2. Display all parcels\n3. Sort parcel\n4. Search parcel\n0. Exit\nEnter your choice: ");
@@ -226,7 +229,7 @@ void admin_portal()
         {
         case 1:
             // clear screen and get id of the parcel to delete
-            printf("\e[1;1H\e[2J");
+
             int id, c;
             printf("\nEnter parcel ID to Delete/Update: ");
             scanf("%d", &id);
@@ -247,8 +250,8 @@ void admin_portal()
             }
             break;
         case 2:
-            // clear screen and display all parcels
-            printf("\e[1;1H\e[2J");
+            // display all parcels
+            printf("\n--------------------------------------------\n");
             printf("All parcels: \n\n");
             FILE *pa;
             parcel out;
@@ -260,11 +263,11 @@ void admin_portal()
             fclose(pa);
             break;
         case 3:
-            printf("\e[1;1H\e[2J");
+
             sort();
             break;
         case 4:
-            printf("\e[1;1H\e[2J");
+
             search();
             break;
         case 0:
@@ -337,7 +340,7 @@ void delete_parcel(int id)
     fclose(temp);           // close the temp file
     remove("temp.txt");     // delete the temp file
     fclose(pa);             // close the main file
-    printf("\e[1;1H\e[2J"); // clears screen
+    printf("\n--------------------------------------------\n");
     printf("Successfully deleted\n");
 }
 
@@ -427,12 +430,12 @@ void update(int id)
     // if parcel is found then i will be 1
     if (i)
     {
-        printf("\e[1;1H\e[2J"); // clears screen
+        printf("\n---");
         printf("Successfully updated\n");
     }
     else
     {
-        printf("\e[1;1H\e[2J"); // clears screen
+        printf("\n---");
         printf("Parcel not found\n");
     }
 
@@ -538,7 +541,7 @@ void search()
         {
             if (out.id == id)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -553,7 +556,7 @@ void search()
         {
             if (strcmp(out.name, name) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -567,7 +570,7 @@ void search()
         {
             if (out.weight == weight)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -581,7 +584,7 @@ void search()
         {
             if (strcmp(out.address, address) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -595,7 +598,7 @@ void search()
         {
             if (strcmp(out.phone, phone) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -609,7 +612,7 @@ void search()
         {
             if (strcmp(out.email, email) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -623,7 +626,7 @@ void search()
         {
             if (strcmp(out.date_time, date_time) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
@@ -637,7 +640,7 @@ void search()
         {
             if (strcmp(out.status, status) == 0) // compare strings using strcmp (returns 0 if strings are equal)
             {
-                printf("\e[1;1H\e[2J"); // clear screen
+                                 // clear screen
                 display(out);           // display parcel
             }
         }
